@@ -25,7 +25,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g npm@7
       - run: npm ci --ignore-scripts
       - run: npm run build
       - run: ./scripts/ci-build-check.sh
@@ -46,7 +45,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g npm@7 # update to npm 7
       - run: npm ci --ignore-scripts
       - run: npm test
 
@@ -61,8 +59,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           # latest nodejs LTS
-          node-version: 14.x
-      - run: npm install -g npm@7 
+          node-version: 14.x 
       - run: npm ci --ignore-scripts
       - run: npm test
       - name: Upload coverage to Codecov
@@ -88,8 +85,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           # latest nodejs LTS
-          node-version: 14.x
-      - run: npm install -g npm@7 # update to npm 7
+          node-version: 14.x 
       - run: npm ci --ignore-scripts
       - name: Preparing a release for npm and github 🚀
         # more about this action here: https://github.com/cycjimmy/semantic-release-action
