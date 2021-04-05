@@ -161,9 +161,9 @@ locations, we do ask that the source of the comparison values be properly docume
 
 Adhan is available under the MIT license. See the LICENSE file for more info.
 
-[badge-version]: https://img.shields.io/npm/v/adhan.svg
+[badge-version]: https://img.shields.io/npm/v/namaz.svg
 [badge-travis]: https://travis-ci.org/goharanwar/adhan-js.svg?branch=master
 [badge-cov]: https://codecov.io/gh/goharanwar/adhan-js/branch/master/graph/badge.svg
 [travis]: https://travis-ci.org/goharanwar/adhan-js
 [npm]: https://www.npmjs.org/package/namaz
-[codecov]: https://codecov.io/gh/batoulapps/adhan-js
+[codecov]: https://codecov.io/gh/goharanwar/adhan-js
