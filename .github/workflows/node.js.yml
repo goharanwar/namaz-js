@@ -26,13 +26,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
-        run: |
-          npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          npm config set scope "<@goharanwar>"
-          npm install -g npm@7 # update to npm 7
-          npm ci # equivalent of npm ci
-          npm run build
-          ./scripts/ci-build-check.sh
+      - run: npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+      - run: npm config set scope "<@goharanwar>"
+      - run: npm install -g npm@7
+      - run: npm ci
+      - run: npm run build
+      - run: ./scripts/ci-build-check.sh
         env:
           CI: true
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -51,13 +50,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
-        run: |
-          npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          npm config set scope "<@goharanwar>"
-          npm install -g npm@7
-          npm ci
-          npm run test
+          registry-url: https://registry.npmjs.org/ 
+      - run: npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+      - run: npm config set scope "<@goharanwar>"
+      - run: npm install -g npm@7
+      - run: npm ci
+      - run: npm run test
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
