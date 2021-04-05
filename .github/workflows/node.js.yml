@@ -25,12 +25,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
       - run: npm install -g npm@7 # update to npm 7
       - run: npm ci # equivalent of npm ci
       - run: npm run build
       - run: ./scripts/ci-build-check.sh
         env:
           CI: true
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # testing job
   test:
