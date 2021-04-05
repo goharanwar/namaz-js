@@ -1,7 +1,7 @@
 {
-  "name": "adhan",
-  "version": "4.1.0",
-  "description": "High precision Islamic prayer time library",
+  "name": "namaz",
+  "version": "4.2.0",
+  "description": "High precision Islamic prayer time library for Pakistan and other countries",
   "main": "Adhan.js",
   "types": "Adhan.d.ts",
   "scripts": {
@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/batoulapps/adhan-js.git"
+    "url": "https://github.com/goharanwar/adhan-js.git"
   },
-  "homepage": "https://github.com/batoulapps/adhan-js",
+  "homepage": "https://github.com/goharanwar/adhan-js",
   "keywords": [
     "adhan",
     "islam",
@@ -32,7 +32,7 @@
     "salaat",
     "namaz"
   ],
-  "author": "Ameir Al-Zoubi <ameir@ameir.com>",
+  "author": "Gohar Anwar <gohar@goharanwar.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.0",

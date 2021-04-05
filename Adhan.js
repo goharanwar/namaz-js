@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["adhan"] = factory();
+		exports["namaz"] = factory();
 	else
-		root["adhan"] = factory();
+		root["namaz"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -728,10 +728,11 @@ const polarCircleResolvedValues = (resolver, date, coordinates) => {
 
 class PrayerTimes_PrayerTimes {
   // eslint-disable-next-line complexity
-  constructor(coordinates, date, calculationParameters) {
+  constructor(coordinates, date, calculationParameters, precise) {
     this.coordinates = coordinates;
     this.date = date;
     this.calculationParameters = calculationParameters;
+    this.precise = precise || false;
     let solarTime = new SolarTime_SolarTime(date, coordinates);
     let fajrTime;
     let sunriseTime;
@@ -826,12 +827,37 @@ class PrayerTimes_PrayerTimes {
     const asrAdjustment = (calculationParameters.adjustments.asr || 0) + (calculationParameters.methodAdjustments.asr || 0);
     const maghribAdjustment = (calculationParameters.adjustments.maghrib || 0) + (calculationParameters.methodAdjustments.maghrib || 0);
     const ishaAdjustment = (calculationParameters.adjustments.isha || 0) + (calculationParameters.methodAdjustments.isha || 0);
-    this.fajr = roundedMinute(dateByAddingMinutes(fajrTime, fajrAdjustment));
-    this.sunrise = roundedMinute(dateByAddingMinutes(sunriseTime, sunriseAdjustment));
-    this.dhuhr = roundedMinute(dateByAddingMinutes(dhuhrTime, dhuhrAdjustment));
-    this.asr = roundedMinute(dateByAddingMinutes(asrTime, asrAdjustment));
-    this.maghrib = roundedMinute(dateByAddingMinutes(maghribTime, maghribAdjustment));
-    this.isha = roundedMinute(dateByAddingMinutes(ishaTime, ishaAdjustment));
+    const fajrPrecise = dateByAddingMinutes(fajrTime, fajrAdjustment);
+    const sunrisePrecise = dateByAddingMinutes(sunriseTime, sunriseAdjustment);
+    const dhuhrPrecise = dateByAddingMinutes(dhuhrTime, dhuhrAdjustment);
+    const asrPrecise = dateByAddingMinutes(asrTime, asrAdjustment);
+    const maghribPrecise = dateByAddingMinutes(maghribTime, maghribAdjustment);
+    const ishaPrecise = dateByAddingMinutes(ishaTime, ishaAdjustment);
+    const fajrRounded = roundedMinute(fajrPrecise);
+    const sunriseRounded = roundedMinute(sunrisePrecise);
+    const dhuhrRounded = roundedMinute(dhuhrPrecise);
+    const asrRounded = roundedMinute(asrPrecise);
+    const maghribRounded = roundedMinute(maghribPrecise);
+    const ishaRounded = roundedMinute(ishaPrecise);
+
+    if (precise) {
+      this.fajr = fajrPrecise;
+      this.sunrise = sunrisePrecise;
+      this.dhuhr = dhuhrPrecise;
+      this.asr = asrPrecise;
+      this.maghrib = maghribPrecise;
+      this.isha = ishaPrecise;
+    } else {
+      this.fajr = fajrRounded;
+      this.sunrise = sunriseRounded;
+      this.dhuhr = dhuhrRounded;
+      this.asr = asrRounded;
+      this.maghrib = maghribRounded;
+      this.isha = ishaRounded;
+    }
+
+    console.log('Is precision on 1 :::::', this.precise);
+    console.log("####### fajr ##########", this.fajr);
   }
 
   timeForPrayer(prayer) {
@@ -1100,7 +1126,7 @@ class SunnahTimes_SunnahTimes {
   constructor(prayerTimes) {
     const date = prayerTimes.date;
     const nextDay = dateByAddingDays(date, 1);
-    const nextDayPrayerTimes = new PrayerTimes_PrayerTimes(prayerTimes.coordinates, nextDay, prayerTimes.calculationParameters);
+    const nextDayPrayerTimes = new PrayerTimes_PrayerTimes(prayerTimes.coordinates, nextDay, prayerTimes.calculationParameters, prayerTimes.precise);
     const nightDuration = (nextDayPrayerTimes.fajr.getTime() - prayerTimes.maghrib.getTime()) / 1000.0;
     this.middleOfTheNight = roundedMinute(dateByAddingSeconds(prayerTimes.maghrib, nightDuration / 2));
     this.lastThirdOfTheNight = roundedMinute(dateByAddingSeconds(prayerTimes.maghrib, nightDuration * (2 / 3)));

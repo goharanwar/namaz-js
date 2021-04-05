@@ -5,7 +5,7 @@ export default class SunnahTimes {
     constructor(prayerTimes) {
         const date = prayerTimes.date;
         const nextDay = dateByAddingDays(date, 1);
-        const nextDayPrayerTimes = new PrayerTimes(prayerTimes.coordinates, nextDay, prayerTimes.calculationParameters);
+        const nextDayPrayerTimes = new PrayerTimes(prayerTimes.coordinates, nextDay, prayerTimes.calculationParameters, prayerTimes.precise);
 
         const nightDuration = (nextDayPrayerTimes.fajr.getTime() - prayerTimes.maghrib.getTime()) / 1000.0;
 

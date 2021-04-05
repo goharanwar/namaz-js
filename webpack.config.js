@@ -4,7 +4,7 @@ module.exports = {
   output: {
     path: `${__dirname}`,
     filename: 'Adhan.js',
-    library: 'adhan',
+    library: 'namaz',
     libraryExport: 'default',
     libraryTarget: 'umd',
     globalObject: 'this',

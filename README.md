@@ -2,11 +2,11 @@
 
 [![badge-version][]][npm] [![badge-travis][]][travis] [![badge-cov][]][codecov] [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-Adhan JavaScript is a well tested and well documented library for calculating Islamic prayer times in JavaScript using Node or a web browser.
+Adhan JavaScript is a well tested and well documented library for calculating Islamic prayer times in JavaScript using Node or a web browser. This works great all countries of the world especially in Pakistan, India, Bangladesh and neighbouring countries. 
+
+You can even get prayer time in seconds for greater precision and your own calculations.
 
 All astronomical calculations are high precision equations directly from the book [“Astronomical Algorithms” by Jean Meeus](http://www.willbell.com/math/mc1.htm). This book is recommended by the Astronomical Applications Department of the U.S. Naval Observatory and the Earth System Research Laboratory of the National Oceanic and Atmospheric Administration.
-
-Implementations of Adhan in other languages can be found in the parent repo [Adhan](https://github.com/batoulapps/Adhan).
 
 ## Installation
 
@@ -17,7 +17,7 @@ Adhan was designed to work in the browser and in Node.js
 ```
 <script src="Adhan.js"></script>
 <script>
-    var prayerTimes = new adhan.PrayerTimes(coordinates, date, params);
+    var prayerTimes = new adhan.PrayerTimes(coordinates, date, params, precisionOn));
 </script>
 ```
 
@@ -29,7 +29,7 @@ npm install adhan
 
 ```
 var adhan = require('adhan')
-var prayerTimes = new adhan.PrayerTimes(coordinates, date, params);
+var prayerTimes = new adhan.PrayerTimes(coordinates, date, params, precisionOn);
 ```
 
 ## Migration
@@ -42,7 +42,7 @@ To get prayer times initialize a new `PrayerTimes` object passing in coordinates
 date, and calculation parameters.
 
 ```js
-var prayerTimes = new adhan.PrayerTimes(coordinates, date, params);
+var prayerTimes = new adhan.PrayerTimes(coordinates, date, params, precisionOn);
 ```
 
 ### Initialization parameters
@@ -76,6 +76,10 @@ The rest of the needed information is contained within the `CalculationParameter
 [Calculation Parameters & Methods Guide](METHODS.md)
 
 
+
+#### Precision On Param
+
+If you also want to get seconds in prayer times you need to pass `precisionOn` boolean parameter to `PrayerTimes` constructor. If `true` you will get seconds in prayer times as well. Don't forget to use time format that displays seconds e.g `h:mm:ss A`
 ### Prayer Times
 
 Once the `PrayerTimes` object has been initialized it will contain values
@@ -86,6 +90,12 @@ date formatting library like [moment](https://momentjs.com/docs/).
 
 ```js
 moment(prayerTimes.fajr).tz('America/New_York').format('h:mm A');
+
+```
+Or if `precisionOn` is `true`
+```js
+moment(prayerTimes.fajr).tz('America/New_York').format('h:mm:ss A');
+
 ```
 
 ### Full Example
@@ -94,15 +104,16 @@ moment(prayerTimes.fajr).tz('America/New_York').format('h:mm A');
 var date = new Date();
 var coordinates = new adhan.Coordinates(35.78056, -78.6389);
 var params = adhan.CalculationMethod.MuslimWorldLeague();
+var precisionOn = true;
 params.madhab = adhan.Madhab.Hanafi;
-var prayerTimes = new adhan.PrayerTimes(coordinates, date, params);
+var prayerTimes = new adhan.PrayerTimes(coordinates, date, params, precisionOn);
 
-var fajrTime = moment(prayerTimes.fajr).tz('America/New_York').format('h:mm A');
-var sunriseTime = moment(prayerTimes.sunrise).tz('America/New_York').format('h:mm A');
-var dhuhrTime = moment(prayerTimes.dhuhr).tz('America/New_York').format('h:mm A');
-var asrTime = moment(prayerTimes.asr).tz('America/New_York').format('h:mm A');
-var maghribTime = moment(prayerTimes.maghrib).tz('America/New_York').format('h:mm A');
-var ishaTime = moment(prayerTimes.isha).tz('America/New_York').format('h:mm A');
+var fajrTime = moment(prayerTimes.fajr).tz('America/New_York').format('h:mm:ss A');
+var sunriseTime = moment(prayerTimes.sunrise).tz('America/New_York').format('h:mm:ss A');
+var dhuhrTime = moment(prayerTimes.dhuhr).tz('America/New_York').format('h:mm:ss A');
+var asrTime = moment(prayerTimes.asr).tz('America/New_York').format('h:mm:ss A');
+var maghribTime = moment(prayerTimes.maghrib).tz('America/New_York').format('h:mm:ss A');
+var ishaTime = moment(prayerTimes.isha).tz('America/New_York').format('h:mm:ss A');
 ```
 
 ### Convenience Utilities
@@ -111,7 +122,7 @@ The `PrayerTimes` object has functions for getting the current prayer and the ne
 easier to dynamically show countdowns until the next prayer.
 
 ```js
-var prayerTimes = new adhan.PrayerTimes(coordinates, date, params);
+var prayerTimes = new adhan.PrayerTimes(coordinates, date, params, precisionOn);
 
 var current = prayerTimes.currentPrayer();
 var next = prayerTimes.nextPrayer();
@@ -151,8 +162,8 @@ locations, we do ask that the source of the comparison values be properly docume
 Adhan is available under the MIT license. See the LICENSE file for more info.
 
 [badge-version]: https://img.shields.io/npm/v/adhan.svg
-[badge-travis]: https://travis-ci.org/batoulapps/adhan-js.svg?branch=master
-[badge-cov]: https://codecov.io/gh/batoulapps/adhan-js/branch/master/graph/badge.svg
-[travis]: https://travis-ci.org/batoulapps/adhan-js
-[npm]: https://www.npmjs.org/package/adhan
+[badge-travis]: https://travis-ci.org/goharanwar/adhan-js.svg?branch=master
+[badge-cov]: https://codecov.io/gh/goharanwar/adhan-js/branch/master/graph/badge.svg
+[travis]: https://travis-ci.org/goharanwar/adhan-js
+[npm]: https://www.npmjs.org/package/namaz
 [codecov]: https://codecov.io/gh/batoulapps/adhan-js
