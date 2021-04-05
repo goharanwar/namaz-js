@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Test
 
-    strategy:
+    strategy: 
       matrix:
         node-version: [10.x, 12.x, 14.x]
     steps:
