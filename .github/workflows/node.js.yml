@@ -28,7 +28,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
       - run: npm config set scope "<@goharanwar>"
+      - run: echo "_auth = $NPM_TOKEN"$'\n'"email = gohar@goharanwar.com"$'\n'"always-auth = true" >> .npmrc
       - run: cat /home/runner/work/_temp/.npmrc
+      - run: cat .npmrc
       - run: npm install -g npm@7
       - run: npm ci
       - run: npm run build
