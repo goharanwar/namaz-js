@@ -158,11 +158,6 @@ export default class PrayerTimes {
             this.isha = ishaRounded;
         }
 
-
-
-        console.log('Is precision on 1 :::::', this.precise)
-        console.log("####### fajr ##########", this.fajr)
-
     }
 
     timeForPrayer(prayer) {
