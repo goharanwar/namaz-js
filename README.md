@@ -2,7 +2,7 @@
 
 [![badge-version][]][npm] [![badge-travis][]][travis] [![badge-cov][]][codecov] [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-Adhan JavaScript is a well tested and well documented library for calculating Islamic prayer times in JavaScript using Node or a web browser. This works great all countries of the world especially in Pakistan, India, Bangladesh and neighbouring countries. 
+Namaz JS is a well tested and well documented library for calculating Islamic prayer times in JavaScript using Node or a web browser. This works great all countries of the world especially in Pakistan, India, Bangladesh and neighbouring countries. 
 
 You can even get prayer time in seconds for greater precision and your own calculations.
 
@@ -10,7 +10,7 @@ All astronomical calculations are high precision equations directly from the boo
 
 ## Installation
 
-Adhan was designed to work in the browser and in Node.js
+Namaz was designed to work in the browser and in Node.js
 
 ### Browser
 
@@ -24,11 +24,11 @@ Adhan was designed to work in the browser and in Node.js
 ### Node
 
 ```
-npm install adhan
+npm install azan-js
 ```
 
 ```
-var adhan = require('adhan')
+var adhan = require('namaz-js')
 var prayerTimes = new adhan.PrayerTimes(coordinates, date, params, precisionOn);
 ```
 
@@ -131,7 +131,7 @@ var nextPrayerTime = prayerTimes.timeForPrayer(next);
 
 ### Sunnah Times
 
-The Adhan library can also calulate Sunnah times. Given an instance of `PrayerTimes`, you can get a `SunnahTimes` object with the times for Qiyam.
+The Namaz JS library can also calulate Sunnah times. Given an instance of `PrayerTimes`, you can get a `SunnahTimes` object with the times for Qiyam.
 
 ```js
 var sunnahTimes = new adhan.SunnahTimes(prayerTimes);
@@ -150,7 +150,7 @@ var qiblaDirection = adhan.Qibla(coordinates);
 
 ## Contributing
 
-Adhan is made publicly available to provide a well tested and well documented library for Islamic prayer times to all 
+Namaz is made publicly available to provide a well tested and well documented library for Islamic prayer times to all 
 developers. We accept feature contributions provided that they are properly documented and include the appropriate 
 unit tests. We are also looking for contributions in the form of unit tests of of prayer times for different 
 locations, we do ask that the source of the comparison values be properly documented.
@@ -159,11 +159,11 @@ locations, we do ask that the source of the comparison values be properly docume
 
 ## License
 
-Adhan is available under the MIT license. See the LICENSE file for more info.
+Azan is available under the MIT license. See the LICENSE file for more info.
 
 [badge-version]: https://img.shields.io/npm/v/namaz.svg
-[badge-travis]: https://travis-ci.org/goharanwar/adhan-js.svg?branch=master
-[badge-cov]: https://codecov.io/gh/goharanwar/adhan-js/branch/master/graph/badge.svg
-[travis]: https://travis-ci.org/goharanwar/adhan-js
+[badge-travis]: https://travis-ci.org/goharanwar/namaz-js.svg?branch=master
+[badge-cov]: https://codecov.io/gh/goharanwar/namaz-js/branch/master/graph/badge.svg
+[travis]: https://travis-ci.org/goharanwar/namaz-js
 [npm]: https://www.npmjs.org/package/namaz
-[codecov]: https://codecov.io/gh/goharanwar/adhan-js
+[codecov]: https://codecov.io/gh/goharanwar/namaz-js
