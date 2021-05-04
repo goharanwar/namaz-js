@@ -24,7 +24,7 @@ Namaz was designed to work in the browser and in Node.js
 ### Node
 
 ```
-npm install azan-js
+npm install namaz-js
 ```
 
 ```
