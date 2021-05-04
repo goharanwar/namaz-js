@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/goharanwar/adhan-js.git"
+    "url": "https://github.com/goharanwar/namaz-js.git"
   },
-  "homepage": "https://github.com/goharanwar/adhan-js",
+  "homepage": "https://github.com/goharanwar/namaz-js",
   "keywords": [
     "adhan",
     "islam",
